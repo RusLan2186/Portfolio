@@ -58,6 +58,10 @@ $maxWidth: 1920;
    padding: 0 rem(15);
 }
 
+html {
+   scroll-behavior: smooth;
+}
+
 // ................................GENERAL..................................................
 body {
    // font-family: "DM Sans";
@@ -131,6 +135,17 @@ body.lock {
    transform: scale(0);
 }
 
+::-webkit-scrollbar {
+   width: rem(15);
+}
+::-webkit-scrollbar-track {
+   background: #000000;
+   border: rem(0.5) solid #e9810b;
+}
+::-webkit-scrollbar-thumb {
+   background: #e9810b;
+}
+
 // ....................................header................................................
 .header {
    position: fixed;
@@ -156,10 +171,14 @@ body.lock {
    font-weight: 700;
    font-size: rem(24);
    line-height: 1;
-   color: #ffffff;
+   color: #e9810b;
    z-index: 3;
+   font-size: rem(30);
+   font-weight: 700;
+   text-shadow: 1px 1px 2px #e9810b, 0 0 1em #ff8800;
    span {
       font-weight: 400;
+      color: #fafafa;
    }
    @media (max-width: 767.98px) {
       font-size: rem(18);
@@ -242,7 +261,7 @@ body.lock {
 // .....................................header-block....................................
 .header-block {
    min-height: 100vh;
-   background: #000000 url(../img/header-block/abstract.png) bottom center / auto no-repeat;
+   background: #ffffff url(../img/header-block/backgr.jpg);
    display: flex;
    flex-direction: column;
    justify-content: center;
@@ -251,7 +270,7 @@ body.lock {
    @media (max-width: 767.98px) {
       min-height: none;
       padding-top: rem(80);
-      padding-bottom: rem(130);
+      padding-bottom: rem(60);
    }
 }
 
@@ -263,18 +282,21 @@ body.lock {
    width: 100%;
    @media (max-width: 767.98px) {
       flex-direction: column;
-      row-gap: rem(30);
    }
 }
 .header-block__image {
+   margin-top: rem(50);
    border: 10px solid #e9810b;
    flex: 0 1 50%;
    border-radius: rem(20);
    width: 100%;
    position: relative;
-   padding-bottom: 40%;
+   padding-bottom: 57%;
+   @media (max-width: 1490.98px) {
+      padding-bottom: 50%;
+   }
    @media (max-width: 767.98px) {
-      padding-bottom: 80%;
+      padding-bottom: 99%;
    }
    img {
       position: absolute;
@@ -289,6 +311,7 @@ body.lock {
 .header-block__body {
    flex: 0 1 50%;
 }
+
 .header-block__title {
    color: #fafafa;
    font-weight: 700;
@@ -312,13 +335,17 @@ body.lock {
 }
 .header-block__text {
    font-weight: 500;
-   font-size: rem(18);
+   font-size: rem(20);
    line-height: calc(24 / 18);
    color: #ffffff;
-   letter-spacing: -0.5px;
+   letter-spacing: 0.5px;
    text-align: center;
    &:not(:last-child) {
-      margin-bottom: adaptive(20, 40);
+      margin-bottom: adaptive(30, 50);
+   }
+   span {
+      color: #e9810b;
+      font-weight: 700;
    }
 }
 .header-block__actions {
@@ -343,7 +370,9 @@ body.lock {
       display: inline-block;
       margin-left: rem(5);
       position: relative;
-      top: rem(2);
+      // top: rem(2);
+      transform: rotate(90deg);
+      animation: 1s anibutton infinite;
       transition: 0.3s all ease 0s;
    }
    &:hover {
@@ -354,8 +383,6 @@ body.lock {
       border: 2px solid #fafafa;
       background-color: #e9810b;
       transition: 0.3s all ease 0s;
-      // background: url(../img/icons/snape-to-top.svg) right no-repeat;
-      transform: rotate(90deg);
    }
    &:active {
       position: relative;
@@ -365,6 +392,21 @@ body.lock {
       width: 100%;
    }
 }
+@keyframes anibutton {
+   0% {
+      top: rem(0);
+      transition: 0.3s all ease 0;
+   }
+   50% {
+      top: rem(10);
+      transition: 0.3s all ease 0s;
+   }
+   100% {
+      top: rem(0);
+      transition: 0.3s all ease 0s;
+   }
+}
+
 .header-block__contacts {
    position: absolute;
    right: 5%;
@@ -374,21 +416,21 @@ body.lock {
    justify-content: center;
    align-items: center;
    row-gap: rem(25);
-   @media (max-width: 1349.98px) {
+   @media (max-width: 1490.98px) {
+      left: -40%;
       flex-direction: row;
       column-gap: rem(25);
-      width: 100%;
-      right: 0;
-      bottom: 5%;
-   }
-   @media (max-width: 999.98px) {
-      bottom: 10%;
+      bottom: 15%;
    }
    @media (max-width: 767.98px) {
-      bottom: 5%;
+      bottom: -1%;
+      left: 0;
+      text-align: center;
    }
    @media (max-width: 380px) {
-      column-gap: rem(15);
+      column-gap: rem(10);
+
+      // bottom: 7%;
    }
 }
 .header-block__item {
@@ -396,6 +438,9 @@ body.lock {
       transition: 0.3s all ease 0s;
       @media (max-width: 767.98px) {
          width: 80%;
+      }
+      @media (max-width: 380px) {
+         width: 70%;
       }
       &:hover {
          transform: scale(1.1);
@@ -405,8 +450,10 @@ body.lock {
 }
 // ....................................ABOUT..........................................
 .about {
-   // margin-top: adaptive(30, 30);
-   margin-bottom: adaptive(30, 70);
+   margin-bottom: adaptive(30, 150);
+   @media (max-width: 767.98px) {
+      margin-top: rem(50);
+   }
 }
 .about__container {
    display: flex;
@@ -503,7 +550,7 @@ body.lock {
 }
 .projects__title {
    text-align: center;
-   margin-bottom: adaptive(5, 30);
+   margin-bottom: adaptive(30, 50);
    font-weight: 700;
    @include adaptiv-text(60, 35);
    line-height: calc(78 / 60);
@@ -511,6 +558,11 @@ body.lock {
    color: #e9810b;
    text-shadow: 1px 1px 2px #e9810b, 0 0 1em #ff8800;
 }
+
+.projects__tabs_body {
+   margin-bottom: adaptive(15, 30);
+}
+
 .tabs-block {
    display: none;
    transition: 0.8s all ease 0s;
@@ -522,13 +574,12 @@ body.lock {
 }
 
 .projects__tabs_navigation {
-   margin-bottom: adaptive(15, 30);
    display: flex;
    justify-content: flex-end;
    column-gap: rem(15);
 }
 .projects__tabs_link {
-   font-size: rem(18);
+   font-size: rem(20);
    color: #fafafa;
    transition: 0.3s all ease 0s;
    &:hover {
@@ -560,11 +611,8 @@ body.lock {
    flex-direction: column;
    position: relative;
    transition: 0.3s all ease 0s;
-   // &:hover {
-   //    transition: 0.3s all ease 0s;
-   //    border: 5px solid #e9810b;
-   //    box-shadow: 0 0 rem(15) #e9810b;
-   // }
+   position: relative;
+
    @media (min-width: 991.98px) {
       max-width: rem(370);
    }
@@ -575,7 +623,7 @@ body.lock {
    padding-bottom: 65%;
    overflow: hidden;
    flex: 1 1 auto;
-   z-index: 10;
+   z-index: 1;
    &:hover {
    }
 
