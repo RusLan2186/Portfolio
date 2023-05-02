@@ -20,23 +20,7 @@ headerLinks.forEach((el) => {
    })
 })
 
-// ........................................КНОПКА НАВЕРХ САЙТА.................................................
-
-$('.back-to-top').click(function () {
-   $('body,html').animate({ scrollTop: 0 }, 800); // 800 - Скорость анимации
-});
-
-$(window).scroll(function () { // Отслеживаем начало прокрутки
-   let scrolled = $(window).scrollTop(); // Вычисляем сколько было прокручено.
-
-   if (scrolled > 350) { // Если высота прокрутки больше 350 - показываем кнопку
-      $('.back-to-top').addClass('back');
-   } else {
-      $('.back-to-top').removeClass('back');
-   }
-});
-
-
+// ................табы...............................................
 $(document).ready(function () {
    $('.projects__tabs_link').click(function (e) {
       e.preventDefault()
@@ -53,33 +37,6 @@ $(document).ready(function () {
    $('.projects__tabs_link:first').click();
 
 });
-
-// ............................. замедленный скролл....................................
-
-// const anchors = document.querySelectorAll('a[href*="#"]');
-// for (let anchor of anchors) {
-//    anchor.addEventListener("click", function (event) {
-//       event.preventDefault();
-//       const blockID = anchor.getAttribute('href');
-//       document.querySelector('' + blockID).scrollIntoView({
-//          behavior: "smooth",
-//          block: "start"
-//       })
-//    })
-// }
-// let anchors = document.querySelectorAll(' a[href*="#"]');
-
-// for (anchor of anchors) {
-//    if (anchor) {
-//       anchor.addEventListener('click', function (e) {
-//          e.preventDefault();
-//          anchorId = this.getAttribute('href');
-//          document.querySelector(anchorId).scrollIntoView({
-//             behavior: 'smooth', block: 'start'
-//          })
-//       })
-//    }
-// }
 
 // .............................отправка данных формы.......................................
 
@@ -119,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
          }
 
       } else {
-         alert('Fill in required fields');
+         alert('Заполните обязательные поля');
       }
 
 
@@ -198,3 +155,34 @@ document.addEventListener('DOMContentLoaded', function () {
       reader.readAsDataURL(file);
    }
 })
+
+// замедленный скролл
+$(document).ready(function () {
+   $('.goto').on('click', function (event) {
+      if ($(this).attr('hash') !== "") {
+         event.preventDefault();
+         let hash = $(this).prop('hash');
+         $('html, body').animate({
+            scrollTop: $(hash).offset().top
+         }, 800, function () {
+         });
+      }
+   });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
